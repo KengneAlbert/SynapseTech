@@ -18,7 +18,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="w-12 h-12 relative">
             <img
-              src={ImageLogo} // Assurez-vous d'avoir le logo dans le dossier public
+              src={ImageLogo}
               alt="SynapseTech Logo"
               className="w-full h-full object-contain"
             />
