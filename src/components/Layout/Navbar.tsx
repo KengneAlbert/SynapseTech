@@ -30,8 +30,8 @@ export default function Navbar() {
         </motion.div>
 
 
-        {/* CTA Button */}
-        <div className="flex items-center gap-4">
+        {/* CTA Button - Hidden on mobile */}
+        <div className="hidden md:flex items-center gap-4">
           <motion.button 
             onClick={() => scrollToSection('contact')}
             whileHover={{ scale: 1.05 }}
