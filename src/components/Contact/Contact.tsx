@@ -35,7 +35,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden min-h-screen flex items-center">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 relative overflow-hidden min-h-[90vh]">
       {/* Background amélioré */}
       <motion.div 
         className="absolute inset-0"
@@ -66,18 +66,18 @@ export default function Contact() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Left Column */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:sticky lg:top-10 space-y-8"
+            className="lg:sticky lg:top-10 space-y-6 md:space-y-8"
           >
-            {/* Header Section */}
-            <div className="space-y-6">
+            {/* Header Section avec meilleur responsive */}
+            <div className="space-y-4 md:space-y-6">
               <motion.div 
                 className="flex items-center gap-2"
                 animate={{ y: [0, -5, 0] }}
@@ -87,38 +87,38 @@ export default function Contact() {
                 <span className="text-[#87bc2c] font-medium">En ligne - Prêt à vous aider</span>
               </motion.div>
               
-              <h2 className="text-5xl font-bold leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
                 Commençons votre{' '}
                 <span className="bg-gradient-to-r from-[#87bc2c] to-[#a4d046] bg-clip-text text-transparent">
                   transformation numérique
                 </span>
               </h2>
               
-              <p className="text-gray-400 text-lg leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-xl">
                 Notre équipe d'experts est disponible pour vous accompagner dans votre projet. 
                 Contactez-nous pour une consultation gratuite.
               </p>
             </div>
 
-            {/* Contact Cards with enhanced animations */}
-            <div className="space-y-4">
+            {/* Contact Cards Grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {contactInfo.map((info, index) => (
                 <ContactCard key={index} {...info} index={index} />
               ))}
             </div>
 
-            {/* Enhanced Social Links Section */}
+            {/* Social Links avec meilleur responsive */}
             <motion.div 
-              className="pt-8 border-t border-gray-800/50"
+              className="pt-6 md:pt-8 border-t border-gray-800/50"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4 md:mb-6">
                 <Globe className="w-5 h-5 text-[#87bc2c]" />
                 <h3 className="text-lg font-semibold">Rejoignez notre communauté</h3>
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3 md:gap-4">
                 {socialLinks.map((link, index) => (
                   <SocialLink key={index} {...link} />
                 ))}
@@ -126,15 +126,17 @@ export default function Contact() {
             </motion.div>
           </motion.div>
 
-          {/* Form Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <ContactForm />
-          </motion.div>
+          {/* Form Column avec meilleur responsive */}
+          <div className="w-full max-w-xl mx-auto lg:max-w-none">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <ContactForm />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -157,19 +159,21 @@ function ContactCard({ icon, label, text, href, index }: ContactCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.02, x: 5 }}
       transition={{ delay: index * 0.1 }}
-      className="group flex items-center gap-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all"
+      className="group flex items-center gap-3 p-3 sm:gap-4 sm:p-4 bg-gray-800/50 rounded-xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all"
     >
       <motion.div 
-        className="p-3 bg-[#87bc2c]/10 rounded-lg text-[#87bc2c]"
+        className="p-2 sm:p-3 bg-[#87bc2c]/10 rounded-lg text-[#87bc2c]"
         whileHover={{ rotate: 10 }}
       >
         {icon}
       </motion.div>
-      <div className="flex-1">
-        <p className="text-sm text-gray-400">{label}</p>
-        <p className="text-white group-hover:text-[#87bc2c] transition-colors">{text}</p>
+      <div className="flex-1 min-w-0">
+        <p className="text-xs sm:text-sm text-gray-400">{label}</p>
+        <p className="text-sm sm:text-base text-white group-hover:text-[#87bc2c] transition-colors truncate">
+          {text}
+        </p>
       </div>
-      <ArrowUpRight className="w-5 h-5 text-gray-500 group-hover:text-[#87bc2c] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+      <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 group-hover:text-[#87bc2c] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
     </motion.a>
   );
 }
